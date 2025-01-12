@@ -1,0 +1,7 @@
+const TYPE_COMMENT = {
+    PRODUCT:"MODELS//PRODUCT",
+    COMMENT:"MODELS//COMMENT",
+    BLOGS:"MODELS//BLOGS",
+
+}
+export default TYPE_COMMENT

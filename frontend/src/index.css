@@ -1,0 +1,157 @@
+/* @import url("https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&family=Gabarito:wght@400..900&family=Lexend:wght@100..900&family=Libre+Franklin:ital,wght@0,100..900;1,100..900&display=swap"); */
+/* @import url('https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&family=Gabarito:wght@400..900&family=Lexend:wght@100..900&family=Libre+Franklin:ital,wght@0,100..900;1,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&family=Lexend:wght@100..900&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Unna:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.padding {
+	@apply px-[10px] sm:px-[30px] md:px-[40px] xl:px-[50px] 2xl:px-[60px];
+}
+
+.text-header {
+	@apply w-full text-base md:text-xl lg:text-2xl font-bold 
+}
+
+.hover-text {
+	@apply text-white;
+}
+
+/* html {
+	font-family: "Montserrat", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+} */
+
+@layer base {
+	:root {
+		--background: 0 0% 100%;
+		--foreground: 222.2 84% 4.9%;
+
+		--card: 0 0% 100%;
+		--card-foreground: 222.2 84% 4.9%;
+
+		--popover: 0 0% 100%;
+		--popover-foreground: 222.2 84% 4.9%;
+
+		--primary: 222.2 47.4% 11.2%;
+		--primary-foreground: 210 40% 98%;
+
+		--secondary: 210 40% 96.1%;
+		--secondary-foreground: 222.2 47.4% 11.2%;
+
+		--muted: 210 40% 96.1%;
+		--muted-foreground: 215.4 16.3% 46.9%;
+
+		--accent: 210 40% 96.1%;
+		--accent-foreground: 222.2 47.4% 11.2%;
+
+		--destructive: 0 84.2% 60.2%;
+		--destructive-foreground: 210 40% 98%;
+
+		--border: 214.3 31.8% 91.4%;
+		--input: 214.3 31.8% 91.4%;
+		--ring: 222.2 84% 4.9%;
+
+		--radius: 0.5rem;
+	}
+
+	.dark {
+		--background: 222.2 84% 4.9%;
+		--foreground: 210 40% 98%;
+
+		--card: 222.2 84% 4.9%;
+		--card-foreground: 210 40% 98%;
+
+		--popover: 222.2 84% 4.9%;
+		--popover-foreground: 210 40% 98%;
+
+		--primary: 210 40% 98%;
+		--primary-foreground: 222.2 47.4% 11.2%;
+
+		--secondary: 217.2 32.6% 17.5%;
+		--secondary-foreground: 210 40% 98%;
+
+		--muted: 217.2 32.6% 17.5%;
+		--muted-foreground: 215 20.2% 65.1%;
+
+		--accent: 217.2 32.6% 17.5%;
+		--accent-foreground: 210 40% 98%;
+
+		--destructive: 0 62.8% 30.6%;
+		--destructive-foreground: 210 40% 98%;
+
+		--border: 217.2 32.6% 17.5%;
+		--input: 217.2 32.6% 17.5%;
+		--ring: 212.7 26.8% 83.9%;
+	}
+}
+
+@layer base {
+	* {
+		@apply border-border;
+	}
+
+	body {
+		@apply bg-background text-foreground;
+	}
+}
+
+.horizontal-slider {
+	position: relative;
+	width: 100%;
+	height: 4px;
+}
+
+.example-track {
+	top: 0;
+	bottom: 0;
+	background: #ddd;
+	border-radius: 999px;
+}
+
+.horizontal-slider .example-track-0 {
+	background: #ddd;
+}
+
+.horizontal-slider .example-track-1 {
+	background: #333;
+}
+
+.example-thumb {
+	height: 13px;
+	width: 13px;
+	background-color: #fff;
+	border: 2px solid #000;
+	border-radius: 50%;
+	cursor: grab;
+	top: -4px;
+}
+
+.text-res {
+	@apply lg:text-sm md:text-xs sm:text-[9px];
+}
+.animatedText {
+  position: relative;
+  display: inline-block;
+  font-size: 2em;
+  color: royalblue;
+  font-weight: 800;
+  text-decoration: underline;
+  overflow: hidden;
+  transition: clip-path 275ms ease;
+}
+
+.animatedText:hover::before {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.animatedText::before {
+  position: absolute;
+  content: attr(data-content);
+  color: midnightblue;
+  text-decoration: underline;
+  clip-path: polygon(0 0, 0 0, 0% 100%, 0 100%);
+  transition: clip-path 275ms ease;
+}
