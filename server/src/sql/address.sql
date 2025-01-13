@@ -1,0 +1,22 @@
+CREATE TABLE address (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    user_id BIGINT NOT NULL,
+    username VARCHAR(255) NOT NULL,
+    is_main BOOLEAN NOT NULL DEFAULT FALSE,
+    phone VARCHAR(20) NOT NULL,
+    city_name VARCHAR(255) NOT NULL,
+    city_id_province VARCHAR(50) NOT NULL,
+    district_name VARCHAR(255) NOT NULL,
+    district_id_province VARCHAR(50) NOT NULL,
+    district_id_district VARCHAR(50) NOT NULL,
+    commune_name VARCHAR(255) NOT NULL,
+    commune_id_commune VARCHAR(50) NOT NULL,
+    commune_id_district VARCHAR(50) NOT NULL,
+    address VARCHAR(255) NOT NULL,
+    detail_address VARCHAR(255) NOT NULL,
+    location_type ENUM('Point') NOT NULL,
+    location_coordinates POINT NOT NULL,
+    deleted BOOLEAN NOT NULL DEFAULT FALSE,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
