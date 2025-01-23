@@ -1,0 +1,18 @@
+CREATE TABLE AttributeMain (
+    id INT AUTO_INCREMENT PRIMARY KEY, -- ID tự động tăng
+    color_id CHAR(36) NOT NULL, -- Liên kết đến bảng Color
+    size_id CHAR(36) NOT NULL, -- Liên kết đến bảng Size
+    price DECIMAL(10, 2) NOT NULL, -- Giá sản phẩm
+    quantity INT NOT NULL, -- Số lượng
+    discount DECIMAL(5, 2) DEFAULT NULL, -- Phần trăm giảm giá
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- Thời gian tạo
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP -- Thời gian cập nhật
+);
+
+-- Thêm ràng buộc khóa ngoại đến bảng Color
+ALTER TABLE Attribute
+ADD CONSTRAINT fk_attribute_color FOREIGN KEY (color_id) REFERENCES Color(id);
+
+-- Thêm ràng buộc khóa ngoại đến bảng Size
+ALTER TABLE Attribute
+ADD CONSTRAINT fk_attribute_size FOREIGN KEY (size_id) REFERENCES Size(id);
