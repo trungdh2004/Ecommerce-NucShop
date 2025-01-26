@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import MapSearchLocation from "@/components/map/MapSearchLocation";
+import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import {
 	Form,
@@ -9,7 +10,6 @@ import {
 	FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { toast } from "sonner";
 import {
 	callCity,
 	callCommune,
@@ -17,14 +17,14 @@ import {
 	editAddress,
 	getAddressById,
 } from "@/service/address";
-import { Button } from "@/components/ui/button";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { ICity, ICommune, IDistrict } from "@/types/address";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import { z } from "zod";
 import AddressLocation from "./AddressLocation";
-import MapSearchLocation from "@/components/map/MapSearchLocation";
-import { ICity, ICommune, IDistrict } from "@/types/address";
 
 const formSchema = z.object({
 	username: z
@@ -143,7 +143,7 @@ const EditAddress = ({ open, handleClose, id }: IProps) => {
 	const onSubmit = async (dataForm: any) => {
 		console.log("dataForm", dataForm);
 
-		// mutate(dataForm);
+		mutate(dataForm);
 	};
 
 	const handleOnChangeCity = async (value: ICity) => {

@@ -34,6 +34,7 @@ import {
 } from "@/store/useSidebarAdmin";
 import { IColor, IProduct } from "@/types/typeProduct";
 import { ISize } from "@/types/variants";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import {
 	AiFillCloseCircle,
@@ -48,7 +49,6 @@ import { MdDeleteForever } from "react-icons/md";
 import ImageUploading, { ImageListType } from "react-images-uploading";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
-import { zodResolver } from "@hookform/resolvers/zod";
 
 const formSchema = z
 	.object({
@@ -173,7 +173,7 @@ const formSchema = z
 			// Nếu is_simple là true, cho phép attributes là mảng rỗng
 			if (data.attributes && data.attributes.length > 0) {
 				// Nếu có attributes, không yêu cầu các trường con
-				data.attributes.forEach((attr, index) => {
+				data.attributes.forEach((attr) => {
 					// const colorPath = ["attributes", index, "color"];
 					// const sizePath = ["attributes", index, "size"];
 					// const pricePath = ["attributes", index, "price"];

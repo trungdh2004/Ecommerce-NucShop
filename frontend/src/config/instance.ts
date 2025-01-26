@@ -1,4 +1,3 @@
-import { ResponseData } from './../types/ObjectCheckoutOrder';
 import axios from "axios";
 
 

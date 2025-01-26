@@ -1,5 +1,3 @@
-"use client";
-
 import { formatQuantity } from "@/common/localFunction";
 import { getCountProduct } from "@/service/dashboard.service";
 import { useQuery } from "@tanstack/react-query";
@@ -15,13 +13,7 @@ import {
 
 interface CustomTooltipProps extends TooltipProps<number, string> {}
 
-const CustomTooltip: React.FC<CustomTooltipProps> = ({
-	active,
-	payload,
-	label,
-}) => {
-	console.log({ active, payload, label });
-
+const CustomTooltip: React.FC<CustomTooltipProps> = ({ active, payload }) => {
 	if (active && payload && payload.length) {
 		const url = payload[0]?.payload?.productImage;
 		return (

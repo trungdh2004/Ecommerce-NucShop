@@ -11,15 +11,15 @@ import {
 } from "@/components/ui/form";
 
 import { Input } from "@/components/ui/input";
+import { useAuth } from "@/hooks/auth";
+import { cn } from "@/lib/utils";
 import { changePassword } from "@/service/account";
 import { IPassword } from "@/types/auth";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AxiosError } from "axios";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { toast } from "sonner";
-import { boolean, z } from "zod";
-import { useAuth } from "@/hooks/auth";
-import { cn } from "@/lib/utils";
+import { z } from "zod";
 const formSchema = z.object({
 	passwordOld: z
 		.string({ required_error: "Bạn phải nhập mật khẩu cũ" })
@@ -43,7 +43,6 @@ const ChangePassword = () => {
 	const [isPasswordOld, setIsPasswordOld] = useState(false);
 	const [isPasswordNew, setIsPasswordNew] = useState(false);
 	const [isConfirmPassword, setIsConfirmPassword] = useState(false);
-	const [checkUid, setCheckUid] = useState(false);
 	const { authUser } = useAuth();
 	console.log("authUser", authUser?.uid);
 	const onSubmit = async (data: IPassword) => {

@@ -2,10 +2,10 @@ import Paginations from "@/components/common/Pagination";
 import { TooltipComponent } from "@/components/common/TooltipComponent";
 import { Button } from "@/components/ui/button";
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuItem,
+	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
 import { pagingOrderShipper } from "@/service/shipper";
@@ -16,50 +16,35 @@ import { toast } from "sonner";
 import OrderItem from "../component/OrderItem";
 
 const OrderNewIndex = () => {
-  const [_, setPageIndex] = useState(1);
-  const [searchParams, setSearchParams] = useSearchParams();
-  const [searchParamsObject, setSearchParamsObject] = useState(()=>{
-    const paramsObject: any = Object.fromEntries(searchParams.entries());
-    return {
-      pageIndex: paramsObject?.pageIndex | 1,
-      pageSize: 12,
-    }
-    
-  });
+	const [_, setPageIndex] = useState(1);
+	const [searchParams, setSearchParams] = useSearchParams();
+	const [searchParamsObject, setSearchParamsObject] = useState(() => {
+		const paramsObject: any = Object.fromEntries(searchParams.entries());
+		return {
+			pageIndex: paramsObject?.pageIndex | 1,
+			pageSize: 12,
+		};
+	});
 	const [status, setStatus] = useState(2);
 	const [resultOrder, setResultOrder] = useState({
 		content: [],
 		pageIndex: 1,
 		totalPage: 1,
 	});
-  const getOrderShipper = async (pageIndex:number) =>{
-    try {
-      const { data } = await pagingOrderShipper(pageIndex, status);
-
-      setResultOrder({
-        content: data.content,
-        pageIndex: data.pageIndex,
-        totalPage: data.totalPage,
-      });
-    } catch (error) {}
-  }
-	useEffect(() => {
-		getOrderShipper(searchParamsObject.pageIndex);
-	}, [status,searchParamsObject]);
-
-	const handleNextPage = async () => {
+	const getOrderShipper = async (pageIndex: number) => {
 		try {
-			const pageNext = resultOrder.pageIndex + 1 || 2;
-			const { data } = await pagingOrderShipper(pageNext, status);
-			setResultOrder((prev: any) => {
-				return {
-					...prev,
-					content: [...prev.content, ...data.content],
-					pageIndex: data.pageIndex,
-				};
+			const { data } = await pagingOrderShipper(pageIndex, status);
+
+			setResultOrder({
+				content: data.content,
+				pageIndex: data.pageIndex,
+				totalPage: data.totalPage,
 			});
 		} catch (error) {}
 	};
+	useEffect(() => {
+		getOrderShipper(searchParamsObject.pageIndex);
+	}, [status, searchParamsObject]);
 
 	const handleReset = async () => {
 		try {
@@ -74,7 +59,6 @@ const OrderNewIndex = () => {
 			toast.error(error.message);
 		}
 	};
-
 
 	return (
 		<div className="relative ">
@@ -128,34 +112,38 @@ const OrderNewIndex = () => {
 					</div>
 				</div>
 			</header>
-      <div className="grid w-full grid-cols-1 gap-4 px-2 md:grid-cols-2 md:px-4">
-					{resultOrder?.content?.map((order: any) => (
-						<OrderItem key={order._id} order={order} onHandleSuccess={()=>getOrderShipper(1)}/>
-					))}
+			<div className="grid w-full grid-cols-1 gap-4 px-2 md:grid-cols-2 md:px-4">
+				{resultOrder?.content?.map((order: any) => (
+					<OrderItem
+						key={order._id}
+						order={order}
+						onHandleSuccess={() => getOrderShipper(1)}
+					/>
+				))}
 
-					{resultOrder?.content?.length === 0 && (
-						<div className="flex items-center justify-center w-full h-20 col-span-2 p-4 text-center border rounded-md">
-							Không có đơn hàng
-						</div>
-					)}
+				{resultOrder?.content?.length === 0 && (
+					<div className="flex items-center justify-center w-full h-20 col-span-2 p-4 text-center border rounded-md">
+						Không có đơn hàng
+					</div>
+				)}
+			</div>
+			{resultOrder?.content?.length > 0 && (
+				<div className="flex items-center justify-center py-4">
+					<Paginations
+						pageCount={resultOrder?.totalPage}
+						handlePageClick={(event: any) => {
+							setPageIndex(event.selected + 1);
+							setSearchParamsObject((prev) => ({
+								...prev,
+								pageIndex: event.selected + 1,
+							}));
+							searchParams.set("pageIndex", event.selected + 1);
+							setSearchParams(searchParams);
+						}}
+						forcePage={searchParamsObject.pageIndex - 1}
+					/>
 				</div>
-        {resultOrder?.content?.length > 0 && (
-						<div className="flex items-center justify-center py-4">
-							<Paginations
-								pageCount={resultOrder?.totalPage}
-								handlePageClick={(event: any) => {
-									setPageIndex(event.selected + 1);
-									setSearchParamsObject((prev) => ({
-										...prev,
-										pageIndex: event.selected + 1,
-									}));
-									searchParams.set("pageIndex", event.selected + 1);
-									setSearchParams(searchParams);
-								}}
-								forcePage={searchParamsObject.pageIndex - 1}
-							/>
-						</div>
-					)}
+			)}
 			{/* <InfiniteScroll
 				dataLength={resultOrder.content.length} //This is important field to render the next resultOrder
 				next={handleNextPage}

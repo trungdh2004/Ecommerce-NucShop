@@ -4,7 +4,6 @@ import DialogConfirm from "@/components/common/DialogConfirm";
 import TableComponent from "@/components/common/TableComponent";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
 import {
 	DropdownMenu,
 	DropdownMenuContent,
@@ -17,6 +16,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useAuth } from "@/hooks/auth";
 import {
 	BanManyUser,
 	banUser,
@@ -32,7 +32,6 @@ import { IoFilter } from "react-icons/io5";
 import { toast } from "sonner";
 import { useDebounceCallback } from "usehooks-ts";
 import DiaLogDecentralization from "./DiaLogDecentralization";
-import { useAuth } from "@/hooks/auth";
 interface IData {
 	_id: string;
 	full_name: string;
@@ -69,7 +68,6 @@ const UserIndex = () => {
 			keyword: inputValue,
 		}));
 	}, 300);
-	const [isStaff, setisStaff] = useState<null | boolean>(null);
 	const [response, setResponse] = useState({
 		pageIndex: 1,
 		pageSize: 5,
@@ -578,7 +576,7 @@ const UserIndex = () => {
 				<DiaLogDecentralization
 					open={openIdUpdated}
 					close={() => setopenIdUpdated(false)}
-					isStaff={isStaff}
+					isStaff={null}
 					handlePagingUser={handlePagingUser}
 				/>
 			)}

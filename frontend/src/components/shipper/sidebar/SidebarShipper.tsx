@@ -1,9 +1,7 @@
-import { formatCurrency } from "@/common/func";
 import { optimizeCloudinaryUrl } from "@/common/localFunction";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import useStoreShipper from "@/store/useCurrentShipper";
-import { BsCoin } from "react-icons/bs";
 import SidebarListShipper from "./SidebarList";
 
 const SidebarShipper = () => {

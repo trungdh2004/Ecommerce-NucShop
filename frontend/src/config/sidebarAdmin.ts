@@ -2,25 +2,24 @@ import { AiOutlineUsergroupAdd } from "react-icons/ai";
 import { CiDeliveryTruck, CiShoppingTag, CiStopwatch } from "react-icons/ci";
 import { FaBox } from "react-icons/fa";
 import { FaTruckFast } from "react-icons/fa6";
-import { FcBullish, FcCurrencyExchange, FcDoughnutChart } from "react-icons/fc";
+import { FcBullish, FcDoughnutChart } from "react-icons/fc";
 import { GoClockFill } from "react-icons/go";
 import { GrBlog } from "react-icons/gr";
 import {
-  HiOutlineCheckCircle,
-  HiOutlineClipboardDocumentCheck,
-  HiOutlineInboxArrowDown,
-  HiOutlineInboxStack,
-  HiOutlineNewspaper,
-  HiOutlineSquaresPlus,
-  HiOutlineTicket,
+	HiOutlineCheckCircle,
+	HiOutlineClipboardDocumentCheck,
+	HiOutlineInboxArrowDown,
+	HiOutlineInboxStack,
+	HiOutlineNewspaper,
+	HiOutlineSquaresPlus,
+	HiOutlineTicket,
 } from "react-icons/hi2";
 import { IoColorPaletteOutline } from "react-icons/io5";
 import {
-  LiaShippingFastSolid,
-  LiaTruckLoadingSolid,
-  LiaUserAstronautSolid,
+	LiaShippingFastSolid,
+	LiaTruckLoadingSolid
 } from "react-icons/lia";
-import { LuLayoutDashboard, LuUserCircle } from "react-icons/lu";
+import { LuUserCircle } from "react-icons/lu";
 import { MdCurrencyExchange, MdOutlinePostAdd } from "react-icons/md";
 import { PiResizeLight } from "react-icons/pi";
 import { TbBasketCancel } from "react-icons/tb";
