@@ -55,7 +55,7 @@ Hướng dẫn cài đặt dự án:
    git clone https://github.com/trungdh2004/NucShop.git
 2. Chạy phía frontend:
    ```bash
-   cd client
+   cd frontend
    ```
    ```bash
    npm install
