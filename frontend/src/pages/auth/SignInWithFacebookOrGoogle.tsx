@@ -6,6 +6,7 @@ import { useRouterHistory } from "@/hooks/router";
 import { socialUser } from "@/service/account";
 import { getCountMyShoppingCart, pagingCartV2 } from "@/service/cart";
 import useCart from "@/store/cart.store";
+import { useLoadingModal } from "@/store/useLoadingModal";
 import { AxiosError } from "axios";
 import {
 	GoogleAuthProvider,
@@ -17,6 +18,7 @@ import { FcGoogle } from "react-icons/fc";
 import { toast } from "sonner";
 const SignInWithFacebookOrGoogle = () => {
 	const auth = getAuth(app);
+	const { setOpen, setClose } = useLoadingModal();
 	const { setAuthUser, setIsLoggedIn } = useAuth();
 	const routerHistory = useRouterHistory();
 	const { setCarts, setTotalCart } = useCart();
@@ -26,6 +28,7 @@ const SignInWithFacebookOrGoogle = () => {
 
 		signInWithPopup(auth, provider)
 			.then(async (result) => {
+				setOpen();
 				const user = getAdditionalUserInfo(result);
 				const payload = {
 					email: user?.profile?.email,
@@ -66,6 +69,9 @@ const SignInWithFacebookOrGoogle = () => {
 				// // The AuthCredential type that was used.
 				// const credential = GoogleAuthProvider.credentialFromError(error);
 				// ...
+			})
+			.finally(() => {
+				setClose();
 			});
 	};
 

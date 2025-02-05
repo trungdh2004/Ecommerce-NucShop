@@ -24,7 +24,9 @@ import {
 } from "../../components/ui/form";
 import { Input } from "../../components/ui/input";
 import SignInWithFacebookOrGoogle from "./SignInWithFacebookOrGoogle";
+import { useLoadingModal } from "@/store/useLoadingModal";
 const Login = () => {
+	const { setOpen, setClose } = useLoadingModal();
 	const [searchParams] = useSearchParams();
 	const router = useNavigate();
 	const { setCarts, setTotalCart } = useCart();
@@ -47,6 +49,7 @@ const Login = () => {
 		},
 	});
 	const onSubmit = async (payload: z.infer<typeof formSchema>) => {
+		setOpen();
 		try {
 			const { data } = await loginAccount(payload);
 			const { user, accessToken } = data;
@@ -77,6 +80,8 @@ const Login = () => {
 			if (error instanceof AxiosError) {
 				toast.error(error.response?.data?.message);
 			}
+		} finally {
+			setClose();
 		}
 	};
 	return (

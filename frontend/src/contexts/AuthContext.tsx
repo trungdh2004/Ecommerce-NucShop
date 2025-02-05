@@ -1,4 +1,5 @@
 import LoadingFixed from "@/components/LoadingFixed";
+import instance from "@/config/instance";
 import { currentAccount } from "@/service/account";
 import { getCountMyShoppingCart, pagingNewCart } from "@/service/cart";
 import useCart from "@/store/cart.store";
@@ -88,12 +89,17 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
 				setIsLoading(false);
 			}
 		})();
-
 		return () => {
 			if (socket) {
 				socket.emit("disconnect", authUser?._id);
 			}
 		};
+	}, []);
+
+	useEffect(() => {
+		(() => {
+			instance.get("/test/request");
+		})();
 	}, []);
 
 	if (isLoading) {

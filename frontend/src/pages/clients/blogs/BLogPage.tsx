@@ -44,7 +44,7 @@ const BlogPage = () => {
 		tab: 1,
 		tags: searchParams.get("tags") || "",
 	});
-	const { data: blogs } = useQuery({
+	const { data: blogs, isLoading } = useQuery({
 		queryKey: ["blogs", searchObject],
 		queryFn: async () => {
 			try {
@@ -54,7 +54,7 @@ const BlogPage = () => {
 				console.log(error);
 			}
 		},
-		placeholderData: keepPreviousData,
+		// placeholderData: keepPreviousData,
 	});
 	const { data: tags } = useQuery({
 		queryKey: ["tags"],
@@ -129,7 +129,8 @@ const BlogPage = () => {
 				</ScrollArea>
 				{/* blogs-lít */}
 				<div className="grid grid-cols-12 min-h-[360px] gap-6 xl:gap-8 my-5">
-					{blogs?.content?.length ? (
+					{!isLoading &&
+						blogs?.content?.length &&
 						blogs?.content?.map((item: IBlog, index: number) => (
 							<>
 								<div
@@ -196,11 +197,25 @@ const BlogPage = () => {
 									</Link>
 								</div>
 							</>
-						))
-					) : (
+						))}
+
+					{!isLoading && blogs.content.length === 0 && (
 						<div className="flex items-center justify-center w-full h-full col-span-12 mt-0 mt-10">
 							<h3 className=" text-lg text-[#1A1E26]">Chưa có bài viết nào.</h3>
 						</div>
+					)}
+
+					{isLoading && (
+						<>
+							<div className="col-span-12 min-[600px]:col-span-6 min-[900px]:col-span-3 h-[300px] border rounded-md  bg-gray-200 animate-pulse"></div>
+							<div className="col-span-12 min-[600px]:col-span-6 min-[900px]:col-span-3 h-[300px] border rounded-md  bg-gray-200 animate-pulse"></div>
+							<div className="col-span-12 min-[600px]:col-span-6 min-[900px]:col-span-3 h-[300px] border rounded-md  bg-gray-200 animate-pulse"></div>
+							<div className="col-span-12 min-[600px]:col-span-6 min-[900px]:col-span-3 h-[300px] border rounded-md  bg-gray-200 animate-pulse"></div>
+							<div className="col-span-12 min-[600px]:col-span-6 min-[900px]:col-span-3 h-[300px] border rounded-md  bg-gray-200 animate-pulse"></div>
+							<div className="col-span-12 min-[600px]:col-span-6 min-[900px]:col-span-3 h-[300px] border rounded-md  bg-gray-200 animate-pulse"></div>
+							<div className="col-span-12 min-[600px]:col-span-6 min-[900px]:col-span-3 h-[300px] border rounded-md  bg-gray-200 animate-pulse"></div>
+							<div className="col-span-12 min-[600px]:col-span-6 min-[900px]:col-span-3 h-[300px] border rounded-md  bg-gray-200 animate-pulse"></div>
+						</>
 					)}
 				</div>
 				{blogs?.totalPage > 1 && (
