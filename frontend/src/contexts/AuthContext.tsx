@@ -98,7 +98,13 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
 
 	useEffect(() => {
 		(() => {
-			instance.get("/test/request");
+			fetch("https://api64.ipify.org?format=json")
+				.then((res) => res.json())
+				.then((data) => {
+					console.log("data", data);
+
+					instance.get("/test/request?ip=" + data.ip);
+				});
 		})();
 	}, []);
 

@@ -12,6 +12,9 @@ const TagsSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    ip2: {
+      type: String,
+    },
   },
   {
     timestamps: true,

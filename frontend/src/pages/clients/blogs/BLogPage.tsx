@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import { pagingBlogs } from "@/service/blog";
 import { getAllTags } from "@/service/tags-admin";
 import { SearchObjectBlog } from "@/types/searchObjecTypes";
-import { keepPreviousData, useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { FaCommentDots, FaEye, FaRegHeart } from "react-icons/fa";
 import { Link, useSearchParams } from "react-router-dom";
